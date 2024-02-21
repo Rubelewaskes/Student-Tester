@@ -1,0 +1,6 @@
+database_url = 'postgres://reader:12345@localhost:5432/tester'
+database_url_login = 'postgres://reader:12345@localhost:5432/testerUsers'
+database_url_student = 'postgres://student:12345@localhost:5432/tester'
+database_url_teacher = 'postgres://teacher:12345@localhost:5432/tester'
+database_url_admin = 'postgres://admin:12345@localhost:5432/tester'
+host = ''
