@@ -12,7 +12,8 @@ async def loginUser():
         output = await check_user_login(loads(data)['login'], loads(data)['password'])
         return output
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
+    except Exception as e:
+        print('Ошибка: ', e)
+    

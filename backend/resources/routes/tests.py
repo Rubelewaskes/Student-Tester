@@ -25,10 +25,11 @@ async def testStudent():
         else:
             raise ValueError('Нет прав!')
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
+    except Exception as e:
+        print('Ошибка: ', e)
+    
 
 
 @app.get('/testsTeacher')
@@ -41,10 +42,11 @@ async def testTeacher():
         else:
             raise ValueError('Нет прав!')
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
+    except Exception as e:
+        print('Ошибка: ', e)
+    
 
 
 @app.get('/testsAdmin')
@@ -56,10 +58,11 @@ async def testAdmin():
         else:
             raise ValueError('Нет прав!')
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
+    except Exception as e:
+        print('Ошибка: ', e)
+    
 
 @app.get('/getTest')
 async def getTest():
@@ -71,11 +74,13 @@ async def getTest():
 
         else:
             raise ValueError('Нет прав!')
-
-    except Exception as e:
-        print('Ошибка: ', e)
+    
     except ValueError as e:
         print("Ошибка: ", e)
+    except Exception as e:
+        print('Ошибка: ', e)
+    
+    
 
 @app.get('/getNameTest')
 async def getName():
@@ -87,10 +92,11 @@ async def getName():
         else:
             raise ValueError('Нет прав!')
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
+    except Exception as e:
+        print('Ошибка: ', e)
+    
 
 @app.post('/postAnswers')
 async def postAnswers():
@@ -102,10 +108,11 @@ async def postAnswers():
         else:
             raise ValueError('Нет прав!')
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
+    except Exception as e:
+        print('Ошибка: ', e)
+    
 
 @app.post('/postTest')
 async def postTest():
@@ -117,11 +124,12 @@ async def postTest():
         else:
             raise ValueError('Нет прав!')
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
         return e
+    except Exception as e:
+        print('Ошибка: ', e)
+    
 
 @app.get('/getFullTest')
 async def getFullTest():
@@ -132,11 +140,12 @@ async def getFullTest():
         else:
             raise ValueError('Нет прав!')  
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
         return e
+    except Exception as e:
+        print('Ошибка: ', e)
+    
 
 @app.post('/updateTest')
 async def updateTest():
@@ -148,11 +157,11 @@ async def updateTest():
         else:
             raise ValueError('Нет прав!')
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
         return e
+    except Exception as e:
+        print('Ошибка: ', e)
 
 @app.post('/deleteTest')
 async def deleteTest():
@@ -165,8 +174,9 @@ async def deleteTest():
         else:
             raise ValueError('Нет прав!')
 
-    except Exception as e:
-        print('Ошибка: ', e)
     except ValueError as e:
         print("Ошибка: ", e)
         return e
+    except Exception as e:
+        print('Ошибка: ', e)
+    
