@@ -26,5 +26,5 @@ async def getAllGroups():
 
         return result.data[0]
 
-    except Exception as e:
+    except ValueError as e:
         print('Exception: ', e)

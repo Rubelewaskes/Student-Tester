@@ -2,7 +2,7 @@ from resources import DB
 from resources.services import json_serializable
 from resources.settings import database_url
 
-async def findAnswers(test_id, id):
+async def findAnswers(test_id, ident):
     try:
         db = DB(database_url=database_url)
         await db.connect()
@@ -11,7 +11,7 @@ async def findAnswers(test_id, id):
                 select count(*) from tester.answer an 
                 join tester.question q 
                 on an.question_id = q.question_id 
-                where an.student_id = {id} and q.test_id = {test_id};
+                where an.student_id = {ident} and q.test_id = {test_id};
             '''
         )
 
@@ -97,11 +97,11 @@ async def getTableResults(test_id):
         if (students):
             result = json_serializable('res')
 
-            for i in range (0, len(students)):
+            for i, student in (students):
                 result.new_features_tuple()
                 result.add_features('number', i+1)
-                result.add_features('FIO', str(students[i]['fio']))
-                result.add_features('group', str(students[i]['group_name']))
+                result.add_features('FIO', str(student['fio']))
+                result.add_features('group', str(student['group_name']))
                 cnt_que = 0
                 result_score = 0
                 for que in questions:
@@ -114,7 +114,7 @@ async def getTableResults(test_id):
                             end as earned_score
                         from tester.answer an
                         join tester.question q ON an.question_id = q.question_id
-                        where an.student_id = {students[i]['student_id']} and q.question_id = {que['question_id']};
+                        where an.student_id = {student['student_id']} and q.question_id = {que['question_id']};
                     '''
                     )
                     result.add_features(f'que{cnt_que+1}', int(answer[0]['earned_score']))
@@ -131,7 +131,7 @@ async def getTableResults(test_id):
         print('Ошибка: ', e)
         return {'massive': []}
 
-async def getTableResultsStud(test_id, id):
+async def getTableResultsStud(test_id, ident):
     try:
         db = DB(database_url=database_url)
         await db.connect()
@@ -143,7 +143,7 @@ async def getTableResultsStud(test_id, id):
 
         group_id = await db.conn.fetch(
             f'''
-                select group_id from tester.student where student_id = {id};
+                select group_id from tester.student where student_id = {ident};
             '''
         )
         group_id = int(group_id[0]['group_id'])
