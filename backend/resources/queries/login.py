@@ -80,10 +80,11 @@ async def check_user_login(login, password):
             return result.data[0]       
         raise ValueError ('Введены некорректные данные.')
     
-    except Exception as e:
-        print('Exception: ', e)
     except ValueError as e:
         print("Exception:", e)
+
+    except Exception as e:
+        print('Exception: ', e)
 
 async def check_user(login):
     try:
