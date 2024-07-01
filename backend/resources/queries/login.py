@@ -9,6 +9,7 @@ async def check_user_login(login, password):
         dbU = DB(database_url=database_url_login)
         await dbU.connect()
         
+        print('Подключение к 1 БД выполнено')
         data = await dbU.conn.fetch(
             f'''
                 select 

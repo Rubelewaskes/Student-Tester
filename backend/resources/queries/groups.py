@@ -3,6 +3,7 @@ from resources.services import json_serializable
 from resources.settings import database_url
 
 
+
 async def getAllGroups():
     try:
         db = DB(database_url=database_url)
@@ -12,7 +13,7 @@ async def getAllGroups():
                 select * from tester.studygroup;
             '''
         )
-
+        print("Подключение установлено")
         groups = json_serializable('grp')
 
         for item in data:

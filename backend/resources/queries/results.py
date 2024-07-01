@@ -96,12 +96,12 @@ async def getTableResults(test_id):
 
         if (students):
             result = json_serializable('res')
-
-            for i, student in (students):
+            
+            for i in range (0, len(students)):
                 result.new_features_tuple()
                 result.add_features('number', i+1)
-                result.add_features('FIO', str(student['fio']))
-                result.add_features('group', str(student['group_name']))
+                result.add_features('FIO', str(students[i]['fio']))
+                result.add_features('group', str(students[i]['group_name']))
                 cnt_que = 0
                 result_score = 0
                 for que in questions:
@@ -114,7 +114,7 @@ async def getTableResults(test_id):
                             end as earned_score
                         from tester.answer an
                         join tester.question q ON an.question_id = q.question_id
-                        where an.student_id = {student['student_id']} and q.question_id = {que['question_id']};
+                        where an.student_id = {students[i]['student_id']} and q.question_id = {que['question_id']};
                     '''
                     )
                     result.add_features(f'que{cnt_que+1}', int(answer[0]['earned_score']))
@@ -122,6 +122,7 @@ async def getTableResults(test_id):
                     cnt_que+=1
                 result.add_features('result', result_score)
             await db.close()
+            print(result.data)
             return {'massive': result.data}
         
         else:
